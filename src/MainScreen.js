@@ -66,7 +66,7 @@ class MainScreen extends React.Component {
     }
 
     appendSpace() {
-        const { numStr, selectedExpansion } = this.state;
+        const { selectedExpansion } = this.state;
         this.appendInput(selectedExpansion + ' ');
 
         this.setState({
@@ -126,6 +126,16 @@ class MainScreen extends React.Component {
         }
     }
 
+    onExpansionClick(index) {
+        let expansion = this.state.expansions[index];
+
+        this.appendInput(expansion + ' ');
+
+        this.setState({
+            numStr: ''
+        });
+    }
+
     renderButton(number, letters) {
         return (
             <Button full large rounded light style={ styles.keyboardButton } onPress={ () => this.onKeyClick(number) }>
@@ -167,7 +177,7 @@ class MainScreen extends React.Component {
                             { expansions.length > 0 
                                 ? expansions.map((expansion, i) => (
                                     <Col key={i}>
-                                        <Button full>
+                                        <Button full onPress={ () => this.onExpansionClick(i) }>
                                             <Text style={ expansion == selectedExpansion ? styles.selectedExpansion : styles.expansion }>{ expansion }</Text>
                                         </Button>
                                     </Col>
