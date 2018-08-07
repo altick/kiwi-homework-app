@@ -3,7 +3,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MainContext from './MainContext';
-import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Input, Grid, Col, Row } from 'native-base';
+import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Grid, Col, Row, Textarea } from 'native-base';
 
 const MODE_PREDICT = 'predict';
 const MODE_EXPAND = 'expand';
@@ -235,8 +235,8 @@ class MainScreen extends React.Component {
                     <Grid>
                         <Row>
                             <Col>
-                                <Item full rounded>
-                                    <Input placeholder='Input' value={ input + selectedExpansion + '_' }/>
+                                <Item full style={ { padding: 5 } } >
+                                    <Textarea rowSpan={3} value={ input + selectedExpansion + '_' } />
                                 </Item>
                             </Col>
                         </Row>
