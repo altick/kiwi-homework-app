@@ -15,12 +15,32 @@ class Provider extends React.Component {
 
     getExpansions = async (input) => {
         console.log(`getting expansions for '${input}'`);
+        if(input.length == 0) {
+            return [];
+        }
 
-        return ['hello', 'world', 'today'];
+        let response = await fetch(`http://192.168.0.164:3000/expand/${input}?limit=5`);
+        if(!response.ok) {
+            throw new Error('Couldn\'t fetch expansions');
+        }
+        let expansions = await response.json();
+
+        return expansions;
     }
 
     getPredictions = async (input) => {
-        console.log(`getting expansions for '${input}'`);
+        console.log(`getting predictions for '${input}'`);
+        if(input.length == 0) {
+            return [];
+        }
+
+        let response = await fetch(`http://192.168.0.164:3000/predict/${input}?limit=5`);
+        if(!response.ok) {
+            throw new Error('Couldn\'t fetch predictions');
+        }
+        let predictions = await response.json();
+
+        return predictions;
     }
 
     state = {
