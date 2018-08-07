@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 const InitialContextState = {
+    isLoading: false,
     actions: {
         getExpansions: async () => {},
         getPredictions: async () => {},
@@ -19,11 +20,15 @@ class Provider extends React.Component {
             return [];
         }
 
+        this.setState({ isLoading: true });
+
         let response = await fetch(`http://192.168.0.164:3000/expand/${input}?limit=5`);
         if(!response.ok) {
             throw new Error('Couldn\'t fetch expansions');
         }
         let expansions = await response.json();
+
+        this.setState({ isLoading: false });
 
         return expansions;
     }
@@ -33,12 +38,16 @@ class Provider extends React.Component {
         if(input.length == 0) {
             return [];
         }
+        
+        this.setState({ isLoading: true });
 
         let response = await fetch(`http://192.168.0.164:3000/predict/${input}?limit=5`);
         if(!response.ok) {
             throw new Error('Couldn\'t fetch predictions');
         }
         let predictions = await response.json();
+
+        this.setState({ isLoading: false });
 
         return predictions;
     }

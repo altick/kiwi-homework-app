@@ -3,7 +3,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MainContext from './MainContext';
-import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Grid, Col, Row, Textarea } from 'native-base';
+import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Grid, Col, Row, Textarea, Spinner } from 'native-base';
 
 const MODE_PREDICT = 'predict';
 const MODE_EXPAND = 'expand';
@@ -214,10 +214,29 @@ class MainScreen extends React.Component {
         );
     }
 
+    renderExpansions() {
+        const { expansions, selectedExpansion } = this.state;
+
+        if(expansions.length == 0) {
+            return (
+                <Col style={ styles.expansionCotainer }><Button full><Text>...</Text></Button></Col>
+            );
+        } else {
+            return expansions.map((expansion, i) => (
+                <Col key={i} style={ styles.expansionCotainer }>
+                    <Button full onPress={ () => this.onExpansionClick(i) }>
+                        <Text style={ expansion == selectedExpansion ? styles.selectedExpansionText : styles.expansionText }>{ expansion }</Text>
+                    </Button>
+                </Col>
+            ));
+        }
+    }
+
     render() {
         // const { someValue, actions: { someAction } } = this.props;
-        const { mode, input, numStr, expansions, selectedExpansion } = this.state;
-        
+        const { mode, input, selectedExpansion } = this.state;
+        const { isLoading } = this.props;
+
         return (
             <Container>
                 <Header hasSegment>
@@ -235,22 +254,14 @@ class MainScreen extends React.Component {
                     <Grid>
                         <Row>
                             <Col>
-                                <Item full style={ { padding: 5 } } >
+                                <Item full style={ styles.textArea } >
                                     <Textarea rowSpan={3} value={ input + selectedExpansion + '_' } />
                                 </Item>
                             </Col>
                         </Row>
                         <Row>
-                            { expansions.length > 0 
-                                ? expansions.map((expansion, i) => (
-                                    <Col key={i}>
-                                        <Button full onPress={ () => this.onExpansionClick(i) }>
-                                            <Text style={ expansion == selectedExpansion ? styles.selectedExpansion : styles.expansion }>{ expansion }</Text>
-                                        </Button>
-                                    </Col>
-                                )) 
-                                :  <Col><Button full><Text>...</Text></Button></Col>
-                            }
+                            { this.renderExpansions() }
+                            { isLoading && <View style={ styles.expansionsLoader }><Spinner /></View> }
                         </Row>
                         <Row>
                             <Col>{ this.renderButton('1', '< C')}</Col>
@@ -287,6 +298,9 @@ class MainScreen extends React.Component {
 }
 
 let styles = StyleSheet.create({
+    textArea: {
+        padding: 5
+    },
     keyboardButton: {
         padding: 20,
         margin: 4
@@ -299,14 +313,21 @@ let styles = StyleSheet.create({
         fontSize: 12,
         textAlign: 'center'
     },
-    expansion: {
+    expansionCotainer: {
+        zIndex: 1
+    },
+    expansionText: {
 
     },
-    selectedExpansion: {
+    selectedExpansionText: {
         fontWeight: 'bold'
+    },
+    expansionsLoader: { 
+        position: 'absolute', 
+        left: 0, 
+        top: -17, 
+        zIndex: 10 
     }
-
-
 });
 
 let MainScreenWithContext = props => (
