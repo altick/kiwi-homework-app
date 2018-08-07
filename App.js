@@ -1,8 +1,9 @@
 import React from 'react';
-import MainContext from './src/MainContext';
-import MainScreenWithContext from './src/MainScreen';
 import { Font } from 'expo';
 import { Text } from 'native-base';
+
+import MainStack from './src/MainStack';
+import MainContext from './src/MainContext';
 
 export default class App extends React.Component {
 
@@ -23,12 +24,13 @@ export default class App extends React.Component {
   }
 
   render() {
+    if(!this.state.fontLoaded) {
+      return <Text>Loading...</Text>;
+    }
+
     return (
       <MainContext.Provider>
-        { this.state.fontLoaded 
-          ? <MainScreenWithContext />
-          : <Text>Loading...</Text>
-        }
+        <MainStack />
       </MainContext.Provider>
     );
   }

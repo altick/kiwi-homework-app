@@ -39,17 +39,17 @@ class MainScreen extends React.Component {
         
         return (
             <Container>
-                <Header>
+                <Header hasSegment>
                     <Left />
                     <Body>
                         <Title>Kiwi T9 App</Title>
-                        <Segment>
-                            <Button first active={ mode == MODE_PREDICT } onPress={ () => this.setMode(MODE_PREDICT) }><Text>Predictions</Text></Button>
-                            <Button last active={ mode == MODE_EXPAND } onPress={ () => this.setMode(MODE_EXPAND) }><Text>Expansions</Text></Button>
-                        </Segment>
                     </Body>
                     <Right />
                 </Header>
+                <Segment>
+                    <Button first active={ mode == MODE_PREDICT } onPress={ () => this.setMode(MODE_PREDICT) }><Text>Predictions</Text></Button>
+                    <Button last active={ mode == MODE_EXPAND } onPress={ () => this.setMode(MODE_EXPAND) }><Text>Expansions</Text></Button>
+                </Segment>
                 <Content>
                     <Text>
                         This is Content Section
