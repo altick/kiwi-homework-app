@@ -1,6 +1,7 @@
 {
   "name": "kiwi-homework-app",
   "version": "0.1.0",
+  "author": "Petr Altman",
   "private": true,
   "devDependencies": {
     "react-native-scripts": "1.14.0",
