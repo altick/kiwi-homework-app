@@ -3,7 +3,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MainContext from './MainContext';
-import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Grid, Col, Row, Textarea, Spinner } from 'native-base';
+import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Grid, Col, Row, Textarea, Spinner, Icon } from 'native-base';
 
 const MODE_PREDICT = 'predict';
 const MODE_EXPAND = 'expand';
@@ -244,7 +244,11 @@ class MainScreen extends React.Component {
                     <Body>
                         <Title>Kiwi T9 App</Title>
                     </Body>
-                    <Right />
+                    <Right>
+                        <Button transparent>
+                            <Icon name="md-settings" type="Ionicons" />
+                        </Button>
+                    </Right>
                 </Header>
                 <Segment>
                     <Button first active={ mode == MODE_PREDICT } onPress={ () => this.setMode(MODE_PREDICT) }><Text>Predictions</Text></Button>
