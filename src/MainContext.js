@@ -15,6 +15,8 @@ class Provider extends React.Component {
 
     getExpansions = async (input) => {
         console.log(`getting expansions for '${input}'`);
+
+        return ['hello', 'world', 'today'];
     }
 
     getPredictions = async (input) => {

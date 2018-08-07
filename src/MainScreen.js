@@ -16,7 +16,9 @@ class MainScreen extends React.Component {
         this.state = {
             mode: MODE_PREDICT,
             input: '',
-            numStr: ''
+            numStr: '',
+            expansions: [],
+            selectedExpansion: ''
         };
     }
 
@@ -31,6 +33,17 @@ class MainScreen extends React.Component {
         // New SomeContext value is this.props.someValue
     }
 
+    async updateExpansions() {
+        const { numStr } = this.state;
+        let expansions = await this.props.actions.getExpansions(numStr);
+        console.log(expansions);
+
+        this.setState({
+            selectedExpansion: expansions.length ? expansions[0] : '',
+            expansions: expansions
+        });
+    }
+
     setMode(mode) {
         this.setState({ mode: mode });
     }
@@ -39,13 +52,6 @@ class MainScreen extends React.Component {
         const { input } = this.state;
         this.setState({
             input: input + text
-        });
-    }
-
-    appendNumbericString(number) {
-        const { numStr } = this.state;
-        this.setState({
-            numStr: numStr + number
         });
     }
 
@@ -59,7 +65,24 @@ class MainScreen extends React.Component {
         });
     }
 
-    removeLastNumber() {
+    appendSpace() {
+        const { numStr, selectedExpansion } = this.state;
+        this.appendInput(selectedExpansion + ' ');
+
+        this.setState({
+            numStr: ''
+        });
+    }
+
+    async appendNumbericString(number) {
+        const { numStr } = this.state;
+        this.setState({
+            numStr: numStr + number
+        });
+        await this.updateExpansions();
+    }
+
+    async removeLastNumber() {
         const { numStr } = this.state;
         if(numStr.length == 0) {
             return;
@@ -67,15 +90,7 @@ class MainScreen extends React.Component {
         this.setState({
             numStr: numStr.substring(0, numStr.length - 1)
         });
-    }
-
-    appendSpace() {
-        const { numStr } = this.state;
-        this.appendInput(numStr + ' ');
-
-        this.setState({
-            numStr: ''
-        });
+        await this.updateExpansions();
     }
 
     onKeyClick(number) {
@@ -124,7 +139,7 @@ class MainScreen extends React.Component {
 
     render() {
         // const { someValue, actions: { someAction } } = this.props;
-        const { mode, input, numStr } = this.state;
+        const { mode, input, numStr, expansions, selectedExpansion } = this.state;
         
         return (
             <Container>
@@ -147,6 +162,18 @@ class MainScreen extends React.Component {
                                     <Input placeholder='Input' value={ input + numStr + '_' }/>
                                 </Item>
                             </Col>
+                        </Row>
+                        <Row>
+                            { expansions.length > 0 
+                                ? expansions.map((expansion, i) => (
+                                    <Col key={i}>
+                                        <Button full>
+                                            <Text style={ expansion == selectedExpansion ? styles.selectedExpansion : styles.expansion }>{ expansion }</Text>
+                                        </Button>
+                                    </Col>
+                                )) 
+                                :  <Col><Button full><Text>...</Text></Button></Col>
+                            }
                         </Row>
                         <Row>
                             <Col>{ this.renderButton('1', '< C')}</Col>
@@ -194,6 +221,12 @@ let styles = StyleSheet.create({
     keyLetters: {
         fontSize: 12,
         textAlign: 'center'
+    },
+    expansion: {
+
+    },
+    selectedExpansion: {
+        fontWeight: 'bold'
     }
 
 
