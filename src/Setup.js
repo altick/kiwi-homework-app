@@ -4,6 +4,7 @@ import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Font } from 'expo';
 import SettingsContext from './settings/SettingsContext';
+import { Spinner } from 'native-base';
 
 class SetupComponent extends React.Component {
 
@@ -36,6 +37,7 @@ class SetupComponent extends React.Component {
     render() {
         return (
             <View style={ styles.container }>
+                <Spinner />
                 <Text>Loading...</Text>
             </View>
         )
