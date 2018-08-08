@@ -39,13 +39,15 @@ class Provider extends React.Component {
         });
     }
 
-    saveSettings = async() => {
-        let settings = {
-            serverIpAddress: this.state.serverIpAddress
-        };
+    saveSettings = async(updatedSettings) => {
+        let settings = { ...defaultSettings, ...updatedSettings };
         let data = JSON.stringify(settings);
 
-        await AsyncStorage.setItem('app:string', data);
+        await AsyncStorage.setItem('app:settings', data);
+
+        this.setState({
+            ... updatedSettings
+        });
     }
 
     state = {

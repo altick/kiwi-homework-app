@@ -203,6 +203,10 @@ class MainScreen extends React.Component {
 
         this.applyExpansion(expansion);
     }
+    
+    onSettingsClick() {
+        this.props.navigation.push('Settings');
+    }
 
     renderButton(number, letters) {
         return (
@@ -246,7 +250,7 @@ class MainScreen extends React.Component {
                         <Title>Kiwi T9 App</Title>
                     </Body>
                     <Right>
-                        <Button transparent>
+                        <Button transparent onPress={ () => this.onSettingsClick() }>
                             <Icon name="md-settings" type="Ionicons" />
                         </Button>
                     </Right>

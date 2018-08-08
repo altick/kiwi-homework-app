@@ -3,6 +3,7 @@
 import { createStackNavigator } from 'react-navigation';
 import MainScreenWithContext from './main/MainScreen';
 import Setup from './Setup';
+import SettingsScreenWithContext from './settings/SettingsScreen';
 
 const MainStack = createStackNavigator({
     Setup: {
@@ -10,6 +11,9 @@ const MainStack = createStackNavigator({
     },
     Main: {
         screen: MainScreenWithContext
+    },
+    Settings: {
+        screen: SettingsScreenWithContext
     }
 },
 {
