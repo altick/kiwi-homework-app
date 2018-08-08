@@ -3,14 +3,18 @@
 import * as React from 'react';
 import { AsyncStorage } from 'react-native';
 
+const defaultSettings = {
+    serverIpAddress: 'localhost'
+};
+
 const InitialContextState = {
     isLoaded: false,
-    serverIpAddress: null,
+    ... defaultSettings,
     actions: {
         loadSettings: async () => {},
         saveSettings: async () => {},
     }
-}
+};
 
 const { Consumer, Provider: ContextProvider } = React.createContext(InitialContextState);
 
@@ -18,7 +22,12 @@ class Provider extends React.Component {
 
     async loadSettings() {
         let data = await AsyncStorage.getItem('app:settings');
-        let settings = JSON.parse(data);
+        
+        let settings = data 
+            ? JSON.parse(data)
+            : defaultSettings;
+
+        console.log(settings);
 
         this.setState({
             ... settings,
