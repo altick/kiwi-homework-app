@@ -3,7 +3,11 @@
 import * as React from 'react';
 import { AsyncStorage } from 'react-native';
 
-const defaultSettings = {
+export type AppSettings = {
+    serverIpAddress: string
+}
+
+const defaultSettings: AppSettings = {
     serverIpAddress: 'localhost'
 };
 
@@ -23,7 +27,7 @@ class Provider extends React.Component {
     loadSettings = async () => {
         let data = await AsyncStorage.getItem('app:settings');
         
-        let settings = data 
+        let settings: AppSettings = data 
             ? JSON.parse(data)
             : defaultSettings;
 

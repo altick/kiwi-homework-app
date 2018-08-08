@@ -4,6 +4,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MainContext from './MainContext';
 import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Grid, Col, Row, Textarea, Spinner, Icon } from 'native-base';
+import SettingsContext from '../settings/SettingsContext';
 
 const MODE_PREDICT = 'predict';
 const MODE_EXPAND = 'expand';
@@ -38,10 +39,10 @@ class MainScreen extends React.Component {
         
         switch(this.state.mode) {
             case MODE_EXPAND:
-            expansions = await this.props.actions.getExpansions(numStr);
+            expansions = await this.props.actions.getExpansions(numStr, this.props.settings);
             break;
             case MODE_PREDICT:
-            expansions = await this.props.actions.getPredictions(numStr);
+            expansions = await this.props.actions.getPredictions(numStr, this.props.settings);
             break;
         }
         
@@ -326,11 +327,15 @@ let styles = StyleSheet.create({
 });
 
 let MainScreenWithContext = props => (
-    <MainContext.Consumer>
-        {state => (
-            <MainScreen { ...props } {...state} ></MainScreen>
-        ) }
-    </MainContext.Consumer>
+    <SettingsContext.Consumer>
+        {settings => (
+            <MainContext.Consumer>
+                {state => (
+                    <MainScreen { ...props } {...state} settings={settings} ></MainScreen>
+                ) }
+            </MainContext.Consumer>
+        )}
+    </SettingsContext.Consumer>
 );
 
 export default MainScreenWithContext;

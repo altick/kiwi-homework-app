@@ -1,6 +1,8 @@
 // @flow
 
 import * as React from 'react';
+import type { AppSettings } from '../settings/SettingsContext';
+
 
 const InitialContextState = {
     isLoading: false,
@@ -14,7 +16,7 @@ const { Consumer, Provider: ContextProvider } = React.createContext(InitialConte
 
 class Provider extends React.Component {
 
-    getExpansions = async (input) => {
+    getExpansions = async (input, settings: AppSettings) => {
         console.log(`getting expansions for '${input}'`);
         if(input.length == 0) {
             return [];
@@ -22,7 +24,9 @@ class Provider extends React.Component {
 
         this.setState({ isLoading: true });
 
-        let response = await fetch(`http://192.168.0.164:3000/expand/${input}?limit=5`);
+        const url = `http://${ settings.serverIpAddress }:3000/expand/${ input }?limit=5`;
+        console.log(url);
+        let response = await fetch(url);
         if(!response.ok) {
             throw new Error('Couldn\'t fetch expansions');
         }
@@ -33,7 +37,7 @@ class Provider extends React.Component {
         return expansions;
     }
 
-    getPredictions = async (input) => {
+    getPredictions = async (input, settings: AppSettings) => {
         console.log(`getting predictions for '${input}'`);
         if(input.length == 0) {
             return [];
@@ -41,7 +45,9 @@ class Provider extends React.Component {
         
         this.setState({ isLoading: true });
 
-        let response = await fetch(`http://192.168.0.164:3000/predict/${input}?limit=5`);
+        const url = `http://${ settings.serverIpAddress }:3000/predict/${ input }?limit=5`;
+        console.log(url);
+        let response = await fetch(url);
         if(!response.ok) {
             throw new Error('Couldn\'t fetch predictions');
         }
