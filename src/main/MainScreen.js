@@ -297,6 +297,11 @@ class MainScreen extends React.Component {
                         <Col>{ this.renderButton('#', 'next >')}</Col>
                     </Row>
                 </Grid>
+                <Footer>
+                    <View style={ styles.footerContainer }>
+                        <Text style={ styles.footerContent } >By Petr Altman</Text>
+                    </View>
+                </Footer>
             </Container>
         );
     }
@@ -332,6 +337,16 @@ let styles = StyleSheet.create({
         left: 0, 
         top: -17, 
         zIndex: 10 
+    },
+    footerContainer: { 
+        flex: 1, 
+        justifyContent: 'center', 
+        backgroundColor: 'white' 
+    },
+    footerContent: { 
+        fontSize: 12,
+        textAlign: 'center', 
+        color: 'lightgray' 
     }
 });
 
