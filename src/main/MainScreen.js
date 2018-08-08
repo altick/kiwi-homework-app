@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import MainContext from './MainContext';
 import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Grid, Col, Row, Textarea, Spinner, Icon } from 'native-base';
 import SettingsContext from '../settings/SettingsContext';
@@ -37,21 +37,33 @@ class MainScreen extends React.Component {
     async updateExpansions(numStr) {
         let expansions = [];
         
-        switch(this.state.mode) {
-            case MODE_EXPAND:
-            expansions = await this.props.actions.getExpansions(numStr, this.props.settings);
-            break;
-            case MODE_PREDICT:
-            expansions = await this.props.actions.getPredictions(numStr, this.props.settings);
-            break;
-        }
-        
-        console.log(expansions);
+        try {
+            switch(this.state.mode) {
+                case MODE_EXPAND:
+                expansions = await this.props.actions.getExpansions(numStr, this.props.settings);
+                break;
+                case MODE_PREDICT:
+                expansions = await this.props.actions.getPredictions(numStr, this.props.settings);
+                break;
+            }
+            
+            console.log(expansions);
 
-        this.setState({
-            selectedExpansion: expansions.length ? expansions[0] : '',
-            expansions: expansions
-        });
+            this.setState({
+                selectedExpansion: expansions.length ? expansions[0] : '',
+                expansions: expansions
+            });
+        } catch(err) {
+            Alert.alert(
+                'Server not available',
+                'Please, check whether you have connection to the same network the server is running on or update the server\'s IP address.',
+                [
+                  {text: 'Set IP address', onPress: () => this.onSettingsClick() },
+                  {text: 'Dismiss', onPress: () => console.log('Dismissed')},
+                ],
+                { cancelable: false }
+              )
+        }
     }
 
     setMode(mode) {
