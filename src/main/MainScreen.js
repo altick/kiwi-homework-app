@@ -6,10 +6,10 @@ import MainContext from './MainContext';
 import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Grid, Col, Row, Textarea, Spinner, Icon } from 'native-base';
 import SettingsContext from '../settings/SettingsContext';
 
-const MODE_PREDICT = 'predict';
-const MODE_EXPAND = 'expand';
+export const MODE_PREDICT = 'predict';
+export const MODE_EXPAND = 'expand';
 
-class MainScreen extends React.Component {
+export class MainScreen extends React.Component {
 
     constructor(props) {
         super(props);
@@ -67,11 +67,7 @@ class MainScreen extends React.Component {
     }
 
     setMode(mode) {
-        const { numStr } = this.state;
-
         this.setState({ mode: mode });
-
-        this.updateExpansions(numStr);
     }
 
     clearExpansions() {
@@ -213,6 +209,14 @@ class MainScreen extends React.Component {
         this.props.navigation.push('Settings');
     }
 
+    onSetModeClick(mode) {
+        const { numStr } = this.state;
+        
+        this.setMode(mode);
+
+        this.updateExpansions(numStr);
+    }
+
     renderButton(number, letters) {
         return (
             <Button full large rounded light style={ styles.keyboardButton } onPress={ () => this.onKeyClick(number) }>
@@ -261,8 +265,8 @@ class MainScreen extends React.Component {
                     </Right>
                 </Header>
                 <Segment>
-                    <Button first active={ mode == MODE_PREDICT } onPress={ () => this.setMode(MODE_PREDICT) }><Text>Predictions</Text></Button>
-                    <Button last active={ mode == MODE_EXPAND } onPress={ () => this.setMode(MODE_EXPAND) }><Text>Expansions</Text></Button>
+                    <Button first active={ mode == MODE_PREDICT } onPress={ () => this.onSetModeClick(MODE_PREDICT) }><Text>Predictions</Text></Button>
+                    <Button last active={ mode == MODE_EXPAND } onPress={ () => this.onSetModeClick(MODE_EXPAND) }><Text>Expansions</Text></Button>
                 </Segment>
                 <Grid>
                     <Row style={ { flex: 2 } }>
