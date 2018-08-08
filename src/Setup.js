@@ -21,6 +21,8 @@ class SetupComponent extends React.Component {
             'Roboto_medium': require('../assets/Fonts/Roboto_medium.ttf'),
         });
 
+        await this.props.settings.actions.loadSettings();
+
 
         this.setState({ isLoaded: true });
 

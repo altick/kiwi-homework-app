@@ -20,7 +20,7 @@ const { Consumer, Provider: ContextProvider } = React.createContext(InitialConte
 
 class Provider extends React.Component {
 
-    async loadSettings() {
+    loadSettings = async () => {
         let data = await AsyncStorage.getItem('app:settings');
         
         let settings = data 
@@ -35,7 +35,7 @@ class Provider extends React.Component {
         });
     }
 
-    async saveSettings() {
+    saveSettings = async() => {
         let settings = {
             serverIpAddress: this.state.serverIpAddress
         };
