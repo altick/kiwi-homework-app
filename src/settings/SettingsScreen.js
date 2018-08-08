@@ -58,7 +58,7 @@ class SettingsScreen extends React.Component<Props> {
                     </Body>
                     <Right>
                         <Button transparent light onPress={ () => this.save() }>
-                            <Text><Icon name='check' type="MaterialCommunityIcons" />Save</Text>
+                            <Text style={ { color: 'white' } }>Save</Text><Icon name='check' type="MaterialCommunityIcons" />
                         </Button>
                     </Right>
                 </Header>
