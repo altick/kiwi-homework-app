@@ -54,7 +54,7 @@ class SettingsScreen extends React.Component<Props> {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Application Settings</Title>
+                        <Title>Settings</Title>
                     </Body>
                     <Right>
                         <Button transparent light onPress={ () => this.save() }>
@@ -66,7 +66,7 @@ class SettingsScreen extends React.Component<Props> {
                     <Content>
                         <Form>
                             <Item floatingLabel>
-                                <Label>Server IP address</Label>
+                                <Label>Server IP address (e.g. 192.168.0.1:1234)</Label>
                                 <Input
                                     value={ this.state.ipAddress } 
                                     onChangeText={(ipAddress) => this.setState({ ipAddress })}

@@ -24,7 +24,7 @@ class Provider extends React.Component {
 
         this.setState({ isLoading: true });
 
-        const url = `http://${ settings.serverIpAddress }:3000/expand/${ input }?limit=5`;
+        const url = `http://${ settings.serverIpAddress }/expand/${ input }?limit=5`;
         console.log(url);
         let response = await fetch(url);
         if(!response.ok) {
@@ -45,7 +45,7 @@ class Provider extends React.Component {
         
         this.setState({ isLoading: true });
 
-        const url = `http://${ settings.serverIpAddress }:3000/predict/${ input }?limit=5`;
+        const url = `http://${ settings.serverIpAddress }/predict/${ input }?limit=5`;
         console.log(url);
         let response = await fetch(url);
         if(!response.ok) {

@@ -8,7 +8,7 @@ export type AppSettings = {
 }
 
 const defaultSettings: AppSettings = {
-    serverIpAddress: 'localhost'
+    serverIpAddress: 'localhost:3000'
 };
 
 const InitialContextState = {
