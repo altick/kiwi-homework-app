@@ -1,7 +1,7 @@
 // @flow
 
 import { createStackNavigator } from 'react-navigation';
-import MainScreenWithContext from './MainScreen';
+import MainScreenWithContext from './main/MainScreen';
 
 const MainStack = createStackNavigator({
     Main: {

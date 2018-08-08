@@ -3,7 +3,7 @@ import { Font } from 'expo';
 import { Text } from 'native-base';
 
 import MainStack from './src/MainStack';
-import MainContext from './src/MainContext';
+import MainContext from './src/main/MainContext';
 
 export default class App extends React.Component {
 
