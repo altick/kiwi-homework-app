@@ -168,12 +168,12 @@ class MainScreen extends React.Component {
                 this.appendNumbericString(number);
                 break;
             }
-            case '#':
+            case '*':
             {
                 this.selectPrevExpansion();
                 break;
             }
-            case '*':
+            case '#':
             {
                 this.selectNextExpansion();
                 break;
@@ -299,9 +299,9 @@ class MainScreen extends React.Component {
                         <Col>{ this.renderButton('9', 'wxyz')}</Col>
                     </Row>
                     <Row>
-                        <Col>{ this.renderButton('#', '< prev')}</Col>
+                        <Col>{ this.renderButton('*', '< prev')}</Col>
                         <Col>{ this.renderButton('0', '_')}</Col>
-                        <Col>{ this.renderButton('*', 'next >')}</Col>
+                        <Col>{ this.renderButton('#', 'next >')}</Col>
                     </Row>
                 </Grid>
             </Container>
