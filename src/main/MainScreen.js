@@ -219,12 +219,12 @@ class MainScreen extends React.Component {
 
         if(expansions.length == 0) {
             return (
-                <Col style={ styles.expansionCotainer }><Button full><Text>...</Text></Button></Col>
+                <Col style={ styles.expansionCotainer }><Button light full><Text>...</Text></Button></Col>
             );
         } else {
             return expansions.map((expansion, i) => (
                 <Col key={i} style={ styles.expansionCotainer }>
-                    <Button full onPress={ () => this.onExpansionClick(i) }>
+                    <Button light full onPress={ () => this.onExpansionClick(i) }>
                         <Text style={ expansion == selectedExpansion ? styles.selectedExpansionText : styles.expansionText }>{ expansion }</Text>
                     </Button>
                 </Col>
@@ -254,48 +254,39 @@ class MainScreen extends React.Component {
                     <Button first active={ mode == MODE_PREDICT } onPress={ () => this.setMode(MODE_PREDICT) }><Text>Predictions</Text></Button>
                     <Button last active={ mode == MODE_EXPAND } onPress={ () => this.setMode(MODE_EXPAND) }><Text>Expansions</Text></Button>
                 </Segment>
-                <Content>
-                    <Grid>
-                        <Row>
-                            <Col>
-                                <Item full style={ styles.textArea } >
-                                    <Textarea rowSpan={3} value={ input + selectedExpansion + '_' } />
-                                </Item>
-                            </Col>
-                        </Row>
-                        <Row>
-                            { this.renderExpansions() }
-                            { isLoading && <View style={ styles.expansionsLoader }><Spinner /></View> }
-                        </Row>
-                        <Row>
-                            <Col>{ this.renderButton('1', '< C')}</Col>
-                            <Col>{ this.renderButton('2', 'abc')}</Col>
-                            <Col>{ this.renderButton('3', 'def')}</Col>
-                        </Row>
-                        <Row>
-                            <Col>{ this.renderButton('4', 'ghi')}</Col>
-                            <Col>{ this.renderButton('5', 'jkl')}</Col>
-                            <Col>{ this.renderButton('6', 'mno')}</Col>
-                        </Row>
-                        <Row>
-                            <Col>{ this.renderButton('7', 'pqrs')}</Col>
-                            <Col>{ this.renderButton('8', 'tuv')}</Col>
-                            <Col>{ this.renderButton('9', 'wxyz')}</Col>
-                        </Row>
-                        <Row>
-                            <Col>{ this.renderButton('#', '< prev')}</Col>
-                            <Col>{ this.renderButton('0', '_')}</Col>
-                            <Col>{ this.renderButton('*', 'next >')}</Col>
-                        </Row>
-                    </Grid>
-                </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button full>
-                            <Text>Footer</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
+                <Grid>
+                    <Row style={ { flex: 2 } }>
+                        <Col>
+                            <Item full style={ styles.textArea }   style={ { flex: 1 } } >
+                                <Textarea rowSpan={3} value={ input + selectedExpansion + '_' }  style={ { flex: 1 } } />
+                            </Item>
+                        </Col>
+                    </Row>
+                    <Row>
+                        { this.renderExpansions() }
+                        { isLoading && <View style={ styles.expansionsLoader }><Spinner /></View> }
+                    </Row>
+                    <Row>
+                        <Col>{ this.renderButton('1', '< C')}</Col>
+                        <Col>{ this.renderButton('2', 'abc')}</Col>
+                        <Col>{ this.renderButton('3', 'def')}</Col>
+                    </Row>
+                    <Row>
+                        <Col>{ this.renderButton('4', 'ghi')}</Col>
+                        <Col>{ this.renderButton('5', 'jkl')}</Col>
+                        <Col>{ this.renderButton('6', 'mno')}</Col>
+                    </Row>
+                    <Row>
+                        <Col>{ this.renderButton('7', 'pqrs')}</Col>
+                        <Col>{ this.renderButton('8', 'tuv')}</Col>
+                        <Col>{ this.renderButton('9', 'wxyz')}</Col>
+                    </Row>
+                    <Row>
+                        <Col>{ this.renderButton('#', '< prev')}</Col>
+                        <Col>{ this.renderButton('0', '_')}</Col>
+                        <Col>{ this.renderButton('*', 'next >')}</Col>
+                    </Row>
+                </Grid>
             </Container>
         );
     }
