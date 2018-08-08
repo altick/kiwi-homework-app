@@ -112,13 +112,6 @@ class MainScreen extends React.Component {
         });
     }
 
-    appendSpace() {
-        const { selectedExpansion } = this.state;
-        this.appendInput(selectedExpansion + ' ');
-
-        this.clearExpansions();
-    }
-
     async appendNumbericString(number) {
         let { numStr } = this.state;
         numStr = numStr + number;
@@ -145,7 +138,7 @@ class MainScreen extends React.Component {
         const { numStr } = this.state;
         switch(number) {
             case '0': {
-                this.appendSpace();
+                this.applySelectedExpansion();
                 break;
             }
             case '1': {
