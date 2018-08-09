@@ -228,9 +228,7 @@ export class MainScreen extends React.Component {
         );
     }
 
-    renderExpansions() {
-        const { expansions, selectedExpansion } = this.state;
-
+    renderExpansions(expansions, selectedExpansion) {
         if(expansions.length == 0) {
             return (
                 <Col style={ styles.expansionCotainer }><Button light full><Text>...</Text></Button></Col>
@@ -247,8 +245,7 @@ export class MainScreen extends React.Component {
     }
 
     render() {
-        // const { someValue, actions: { someAction } } = this.props;
-        const { mode, input, selectedExpansion } = this.state;
+        const { mode, input, expansions, selectedExpansion } = this.state;
         const { isLoading } = this.props;
 
         return (
@@ -277,7 +274,7 @@ export class MainScreen extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        { this.renderExpansions() }
+                        { this.renderExpansions(expansions, selectedExpansion) }
                         { isLoading && <View style={ styles.expansionsLoader }><Spinner /></View> }
                     </Row>
                     <Row>
