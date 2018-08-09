@@ -177,5 +177,171 @@ describe('Input string', () => {
 });
 
 describe('Expansions', () => {
-    
+
+    describe('Clear Expansions', () => {
+        
+        it('Should clear numeric string', () => {
+            instance.state = {
+                numStr: 'abc'
+            };
+            
+            instance.clearExpansions();
+
+            expect(instance.state.numStr).toBe('');
+        });
+
+        it('Should clear expansions list and selected expansion', () => {
+            instance.state = {
+                expansions: ['hello', 'world'],
+                selectedExpansion: 'world'
+            };
+            
+            instance.clearExpansions();
+
+            expect(instance.state.expansions).toHaveLength(0);
+            expect(instance.state.selectedExpansion).toBe('');
+        });
+
+    });
+
+    describe('Apply expansion', () => {
+
+        beforeEach(() => {
+            instance.clearExpansions = jest.fn();
+        });
+
+        it('Should append expansion to the input and add trailing space', () => {
+            instance.state = {
+                input: 'Hello '
+            };
+
+            instance.applyExpansion('world');
+
+            expect(instance.state.input).toBe('Hello world ');
+        });
+
+        it('Should append selected expansion to the input and add trailing space', () => {
+            instance.state = {
+                input: 'Hello ',
+                selectedExpansion: 'world'
+            };
+
+            instance.applySelectedExpansion();
+
+            expect(instance.state.input).toBe('Hello world ');
+        });
+
+        it('Should clear expansions after applying expansion', () => {
+            instance.applyExpansion('world');
+
+            expect(instance.clearExpansions).toBeCalled();
+        });
+
+    });
+
+    describe('Update expansions', () => {
+
+        beforeEach(() => {
+            instance.props = {
+                actions: {
+                    getExpansions: jest.fn( async () => ['aa', 'ab', 'ac'] ),
+                    getPredictions: jest.fn(async () => ['hello', 'world'] )
+                }
+            };
+        });
+
+        it('Should return expansions when mode is to set to MODE_EXPAND', async () => {
+            expect.assertions(2);
+
+            instance.state = {
+                mode: MODE_EXPAND
+            };
+
+            await instance.updateExpansions('1');
+
+            expect(instance.state.expansions).toEqual(expect.arrayContaining([ 'aa', 'ab', 'ac' ]));
+            expect(instance.state.expansions).toHaveLength(3);
+        });
+
+        it('Should return predictions when mode is to set to MODE_PREDICT', async () => {
+            expect.assertions(2);
+
+            instance.state = {
+                mode: MODE_PREDICT
+            };
+
+            await instance.updateExpansions('1');
+
+            expect(instance.state.expansions).toEqual(expect.arrayContaining([ 'hello', 'world' ]));
+            expect(instance.state.expansions).toHaveLength(2);
+        });
+
+    });
+
+});
+
+describe('Keyboard', () => {
+
+    it('Should append numeric string for keys 23456789', () => {
+        let mockFn = jest.fn();
+        instance.appendNumbericString = mockFn;
+
+        instance.onKeyClick('2');
+        instance.onKeyClick('3');
+        instance.onKeyClick('4');
+        instance.onKeyClick('5');
+        instance.onKeyClick('6');
+        instance.onKeyClick('7');
+        instance.onKeyClick('8');
+        instance.onKeyClick('9');
+
+        expect(mockFn.mock.calls).toEqual([['2'], ['3'], ['4'], ['5'], ['6'], ['7'], ['8'], ['9']]);
+    });
+
+    it('Should apply selected expansion for key 0', () => {
+        let mockFn = jest.fn();
+        instance.applySelectedExpansion = mockFn;
+
+        instance.onKeyClick('0');
+
+        expect(mockFn).toBeCalled();
+    });
+
+    it('Should remove last number for key 1 if numeric string is not empty', () => {
+        let mockFn = jest.fn();
+        instance.removeLastNumber = mockFn;
+        instance.state.numStr = '1';
+
+        instance.onKeyClick('1');
+
+        expect(mockFn).toBeCalled();
+    });
+
+    it('Should remove last letter for key 1 if numeric string is empty', () => {
+        let mockFn = jest.fn();
+        instance.removeLastLetter = mockFn;
+        instance.state.numStr = '';
+
+        instance.onKeyClick('1');
+
+        expect(mockFn).toBeCalled();
+    });
+
+    it('Should select previous expansion for key *', () => {
+        let mockFn = jest.fn();
+        instance.selectPrevExpansion = mockFn;
+
+        instance.onKeyClick('*');
+
+        expect(mockFn).toBeCalled();
+    });
+
+    it('Should select next expansion for key #', () => {
+        let mockFn = jest.fn();
+        instance.selectNextExpansion = mockFn;
+
+        instance.onKeyClick('#');
+
+        expect(mockFn).toBeCalled();
+    });
 });
