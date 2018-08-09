@@ -30,8 +30,11 @@ export class MainScreen extends React.Component {
     }
     
     componentDidUpdate(prevProps, prevState) {
-        // Previous SomeContext value is prevProps.someValue
-        // New SomeContext value is this.props.someValue
+        const { numStr, mode } = this.state;
+
+        if(prevState.mode != mode) {
+            this.updateExpansions(numStr);
+        }
     }
 
     async updateExpansions(numStr) {
@@ -209,14 +212,6 @@ export class MainScreen extends React.Component {
         this.props.navigation.push('Settings');
     }
 
-    onSetModeClick(mode) {
-        const { numStr } = this.state;
-        
-        this.setMode(mode);
-
-        this.updateExpansions(numStr);
-    }
-
     renderButton(number, letters) {
         return (
             <Button full large rounded light style={ styles.keyboardButton } onPress={ () => this.onKeyClick(number) }>
@@ -253,7 +248,7 @@ export class MainScreen extends React.Component {
                 <Header hasSegment>
                     <Left />
                     <Body>
-                        <Title>Kiwi T9 App</Title>
+                        <Title>Kiwi homework</Title>
                     </Body>
                     <Right>
                         <Button transparent onPress={ () => this.onSettingsClick() }>
@@ -262,14 +257,18 @@ export class MainScreen extends React.Component {
                     </Right>
                 </Header>
                 <Segment>
-                    <Button first active={ mode == MODE_PREDICT } onPress={ () => this.onSetModeClick(MODE_PREDICT) }><Text>Predictions</Text></Button>
-                    <Button last active={ mode == MODE_EXPAND } onPress={ () => this.onSetModeClick(MODE_EXPAND) }><Text>Expansions</Text></Button>
+                    <Button first active={ mode == MODE_PREDICT } onPress={ () => this.setMode(MODE_PREDICT) } style={ styles.segmentButton }>
+                        <Text style={ mode == MODE_PREDICT ? styles.segmentTextActive : styles.segmentText }>Predictions</Text>
+                    </Button>
+                    <Button last active={ mode == MODE_EXPAND } onPress={ () => this.setMode(MODE_EXPAND) } style={ styles.segmentButton }>
+                        <Text style={ mode == MODE_EXPAND ? styles.segmentTextActive : styles.segmentText }>Expansions</Text>
+                    </Button>
                 </Segment>
                 <Grid>
                     <Row style={ { flex: 2 } }>
                         <Col>
                             <Item full style={ styles.textArea }   style={ { flex: 1 } } >
-                                <Textarea rowSpan={3} value={ input + selectedExpansion + '_' }  style={ { flex: 1 } } />
+                                <Textarea editable={false} rowSpan={3} value={ input + selectedExpansion + '_' }  style={ { flex: 1 } } />
                             </Item>
                         </Col>
                     </Row>
@@ -348,6 +347,15 @@ let styles = StyleSheet.create({
         fontSize: 12,
         textAlign: 'center', 
         color: 'lightgray' 
+    },
+    segmentButton: {
+        padding: 15
+    },
+    segmentText: {
+        color: 'white'
+    },
+    segmentTextActive: {
+        color: 'blue'
     }
 });
 

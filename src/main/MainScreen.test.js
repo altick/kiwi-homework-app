@@ -39,8 +39,10 @@ describe('Input mode', () => {
             expect(instance.setMode).toBeCalled();
         });
     
-        it('Should update expansions when clicked on set mode', () => {
-            instance.onSetModeClick(MODE_PREDICT);
+        it('Should update expansions when mode has changed', () => {
+            instance.state.mode = MODE_PREDICT;
+            const prevState = { mode: MODE_EXPAND };
+            instance.componentDidUpdate(null, prevState);
     
             expect(instance.updateExpansions).toBeCalled();
         });
