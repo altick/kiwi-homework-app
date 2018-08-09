@@ -1,0 +1,281 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering Render button Should render button with correct number and letters 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  collapsable={undefined}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "stretch",
+      "backgroundColor": "#f4f4f4",
+      "borderBottomWidth": null,
+      "borderColor": "#007aff",
+      "borderLeftWidth": null,
+      "borderRadius": 57,
+      "borderRightWidth": null,
+      "borderTopWidth": null,
+      "borderWidth": undefined,
+      "elevation": 2,
+      "flexDirection": "row",
+      "height": 60,
+      "justifyContent": "center",
+      "margin": 4,
+      "opacity": 1,
+      "padding": 20,
+      "paddingBottom": 6,
+      "paddingTop": 6,
+      "shadowColor": undefined,
+      "shadowOffset": undefined,
+      "shadowOpacity": undefined,
+      "shadowRadius": undefined,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 20,
+          "textAlign": "center",
+        }
+      }
+    >
+      1
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 12,
+          "textAlign": "center",
+        }
+      }
+    >
+      test
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Rendering Render expansions Should render given expansions and highlight the selected one 1`] = `
+Array [
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "stretch",
+          "backgroundColor": "#f4f4f4",
+          "borderBottomWidth": null,
+          "borderColor": "#007aff",
+          "borderLeftWidth": null,
+          "borderRadius": 0,
+          "borderRightWidth": null,
+          "borderTopWidth": null,
+          "borderWidth": undefined,
+          "elevation": 2,
+          "flexDirection": "row",
+          "height": 45,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingBottom": 6,
+          "paddingTop": 6,
+          "shadowColor": undefined,
+          "shadowOffset": undefined,
+          "shadowOpacity": undefined,
+          "shadowRadius": undefined,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={Object {}}
+      >
+        hello
+      </Text>
+    </View>
+  </View>,
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "stretch",
+          "backgroundColor": "#f4f4f4",
+          "borderBottomWidth": null,
+          "borderColor": "#007aff",
+          "borderLeftWidth": null,
+          "borderRadius": 0,
+          "borderRightWidth": null,
+          "borderTopWidth": null,
+          "borderWidth": undefined,
+          "elevation": 2,
+          "flexDirection": "row",
+          "height": 45,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingBottom": 6,
+          "paddingTop": 6,
+          "shadowColor": undefined,
+          "shadowOffset": undefined,
+          "shadowOpacity": undefined,
+          "shadowRadius": undefined,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        world
+      </Text>
+    </View>
+  </View>,
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "stretch",
+          "backgroundColor": "#f4f4f4",
+          "borderBottomWidth": null,
+          "borderColor": "#007aff",
+          "borderLeftWidth": null,
+          "borderRadius": 0,
+          "borderRightWidth": null,
+          "borderTopWidth": null,
+          "borderWidth": undefined,
+          "elevation": 2,
+          "flexDirection": "row",
+          "height": 45,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingBottom": 6,
+          "paddingTop": 6,
+          "shadowColor": undefined,
+          "shadowOffset": undefined,
+          "shadowOpacity": undefined,
+          "shadowRadius": undefined,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={Object {}}
+      >
+        again
+      </Text>
+    </View>
+  </View>,
+]
+`;

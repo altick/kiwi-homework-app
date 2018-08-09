@@ -345,3 +345,29 @@ describe('Keyboard', () => {
         expect(mockFn).toBeCalled();
     });
 });
+
+describe('Rendering', () => {
+
+    describe('Render button', () => {
+
+        it('Should render button with correct number and letters', () => {
+            const btn = renderer
+                .create(instance.renderButton('1', 'test'))
+                .toJSON();
+            expect(btn).toMatchSnapshot();
+        });
+    
+    });
+
+    describe('Render expansions', () => {
+
+        it('Should render given expansions and highlight the selected one', () => {
+            const component = renderer
+                .create(instance.renderExpansions(['hello', 'world', 'again'], 'world'))
+                .toJSON();
+            expect(component).toMatchSnapshot();
+        });
+    
+    });
+
+});
