@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { StyleSheet, Text, View, Alert } from 'react-native';
+import { Platform, StyleSheet, Text, View, Alert } from 'react-native';
 import MainContext from './MainContext';
 import { Container, Header, Left, Body, Title, Segment, Right, Content, Footer, FooterTab, Button, Item, Grid, Col, Row, Textarea, Spinner, Icon } from 'native-base';
 import SettingsContext from '../settings/SettingsContext';
@@ -257,11 +257,11 @@ export class MainScreen extends React.Component {
                     </Right>
                 </Header>
                 <Segment>
-                    <Button first active={ mode == MODE_PREDICT } onPress={ () => this.setMode(MODE_PREDICT) } style={ styles.segmentButton }>
-                        <Text style={ mode == MODE_PREDICT ? styles.segmentTextActive : styles.segmentText }>Predictions</Text>
+                    <Button first active={ mode == MODE_PREDICT } onPress={ () => this.setMode(MODE_PREDICT) } style={ Platform.OS == 'android' ? styles.segmentButton : {} }>
+                        <Text style={ Platform.OS == 'android' ? (mode == MODE_PREDICT ? styles.segmentTextActive : styles.segmentText) : {} }>Predictions</Text>
                     </Button>
-                    <Button last active={ mode == MODE_EXPAND } onPress={ () => this.setMode(MODE_EXPAND) } style={ styles.segmentButton }>
-                        <Text style={ mode == MODE_EXPAND ? styles.segmentTextActive : styles.segmentText }>Expansions</Text>
+                    <Button last active={ mode == MODE_EXPAND } onPress={ () => this.setMode(MODE_EXPAND) } style={ Platform.OS == 'android' ? styles.segmentButton : {} }>
+                        <Text style={ Platform.OS == 'android' ? (mode == MODE_EXPAND ? styles.segmentTextActive : styles.segmentText) : {} }>Expansions</Text>
                     </Button>
                 </Segment>
                 <Grid>

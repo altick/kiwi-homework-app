@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Container, Header, Content, Button, Body, Title, Icon, Left, Fab, Form, Right, Item, Input, Label } from 'native-base';
 import SettingsContext from './SettingsContext';
 
@@ -57,8 +57,8 @@ class SettingsScreen extends React.Component<Props> {
                         <Title>Settings</Title>
                     </Body>
                     <Right>
-                        <Button transparent light onPress={ () => this.save() }>
-                            <Text style={ { color: 'white' } }>Save</Text><Icon name='check' type="MaterialCommunityIcons" />
+                    <Button transparent onPress={ () => this.save() }>
+                            <Text style={  Platform.OS == 'android' ? { color: 'white' } : {}  }>Save</Text><Icon name='check' type="MaterialCommunityIcons" />
                         </Button>
                     </Right>
                 </Header>
