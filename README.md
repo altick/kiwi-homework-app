@@ -10,6 +10,7 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 ### With Expo
 * Install Expo app on your android or ios device
 * `yarn start`
+* When app starts go to Settings (by tapping on the cog icon button in the header) and set the IP address and port of the server
 
 ### Android device/emulator
 * Connect your device or run android emulator
